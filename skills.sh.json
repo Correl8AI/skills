@@ -1,0 +1,17 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Agentic Product Review",
+      "description": "Skills for product and technical teams discovering, reviewing, and improving AI agent capabilities in a codebase.",
+      "skills": [
+        "discover-agentic-capabilities",
+        "review-agentic-capabilities",
+        "recommend-agentic-product-improvements",
+        "manage-agentic-product-review-memory",
+        "agentic-product-review"
+      ]
+    }
+  ]
+}
