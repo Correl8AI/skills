@@ -44,7 +44,7 @@ For each finding, read enough code to propose a realistic improvement:
 - Routes, components, hooks, jobs, and tests related to the capability
 - Similar patterns already used in the repo (loading states, empty states, approval flows, error handling)
 
-Use **capability** as the stable unit. Pull **Experience** and **Surface** from the catalog, not the review.
+Use **capability** as the stable unit. Read catalog and review for context; write forward-looking recommendations only — do not restate findings.
 
 ## Improvement Process
 
@@ -56,7 +56,7 @@ Use **capability** as the stable unit. Pull **Experience** and **Surface** from 
    - One finding if the user passes or names a finding slug (e.g. `coarse-multi-tool-progress`)
    - Skip **Open questions** — use `manage-agentic-product-review-memory` when the user answers
 3. For each selected finding, read the code and find patterns to reuse.
-4. Write one file per capability at `agentic-product-review/recommendations/<capability-slug>.md` (e.g. `agent-chat.md`) using `references/output-format.md`. Create the folder if needed. Per file: capability name as title, intro sentence, then per-finding **Product** (experience/surface from catalog) and **Tech**, then **Notes** last. End every file with **Next step**, horizontal rule, and footer.
+4. Write one file per capability at `agentic-product-review/recommendations/<capability-slug>.md` using `references/output-format.md`. Create the folder if needed. Per finding: **Finding ref**, then **Product** (**Recommendation** only), then **Tech** (**Implementation** and files). Do not restate review or catalog copy. End every file with **Next step**, horizontal rule, and footer.
 5. Tell the user how many recommendation files were written.
 
 Do not write code unless the user explicitly asks to implement.
@@ -73,16 +73,13 @@ Re-read the code, update only `agentic-product-review/recommendations/<capabilit
 
 ## What This Skill Covers
 
-- Codebase-grounded improvement recommendations for review findings
-- File paths, patterns to follow, and implementation notes
-- Acceptance criteria, effort, and risk per recommendation
-- **Finding ref** linking each recommendation to a finding slug in the review (e.g. `reviews/agent-chat.md` → `coarse-multi-tool-progress`)
-- **Experience** and **Surface** pulled from the catalog; **Problem** from the confirmed finding
+- Forward-looking **Recommendation** (product) and **Implementation** (tech) per review finding
+- **Finding ref** as a pointer — not a copy of the review
+- File paths, patterns to follow, acceptance criteria, effort, and risk
 
 ## What This Skill Does Not Cover
 
-- Discovering or cataloging capabilities
-- Judging UX quality or writing findings
+- Restating findings, problems, impact, or catalog experience/surface
 - Implementing code unless the user explicitly asks
 
 ## Next Step

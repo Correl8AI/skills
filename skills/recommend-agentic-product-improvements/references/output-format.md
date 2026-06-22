@@ -8,9 +8,9 @@ Load `agentic-product-review/memory/project-context.md` first when it exists.
 
 File naming: `<capability-slug>.md` (e.g. `agent-chat.md`) — match the catalog capability ID.
 
-Outputs are read by **product and tech** people. Some readers have a light technical background — write product fields in plain language. Tech sections cite real files and patterns from the repo.
+Outputs are read by **product and tech** people. The review already states the problem and impact — recommendations should be **forward-looking** only.
 
-This is the **improvement** step. Experience and surface come from the discovery catalog; problems come from the review. Do not re-catalog or re-review here.
+This is the **improvement** step. Read the catalog and review for context; write what to change, not what is wrong today.
 
 ```md
 # <Capability Name>
@@ -21,30 +21,24 @@ Recommendations for capability `agent-chat` from `agentic-product-review/reviews
 
 ### <short label>
 
-- **Finding ref**: `agentic-product-review/reviews/agent-chat.md` → `no-first-run-guidance`
+- **Finding ref**: `reviews/agent-chat.md` → `no-first-run-guidance`
 
 #### Product
 
-- **Experience**: From the catalog — user or operator experience being improved
-- **Surface**: From the catalog — where in the product this appears
-- **Problem**: From the review finding — what is wrong today, in plain language
-- **Impact**: Why this matters for users, operators, or the business
-- **Direction**: Concrete product or UX change — readable without reading code
+- **Recommendation**: Concrete product or UX change to implement — readable without reading code. Do not restate the finding, problem, impact, experience, or surface.
 
 #### Tech
 
-- **Evidence**: Key files only — enough to locate the issue in code, not a full architecture walkthrough
-- **Patterns to follow**: Existing components, hooks, or flows in this repo to mirror
+- **Implementation**: How to build it in this repo — step-by-step, grounded in existing patterns
+- **Patterns to follow**: Existing components, hooks, or flows to mirror
 - **Files to change**:
   - `path/to/file.tsx` — what to change and why
 - **Files to add** (if needed):
   - `path/to/new-file.tsx` — purpose
-- **Dependencies**: APIs, state, routes, or jobs touched by this fix
-- **Implementation notes**: Step-by-step guidance that matches how this repo is structured
-- **Acceptance criteria**: Testable outcomes after the fix
+- **Acceptance criteria**: Testable outcomes after the change
 - **Effort**: small | medium | large — **Risk**: low | medium | high
 
-- **Notes**: Open questions or items needing a product or engineering decision
+- **Notes**: Engineering or product decisions only — not a repeat of the finding
 
 ### <short label>
 
@@ -61,34 +55,21 @@ Pick a recommendation to implement, or re-run `review-agentic-capabilities` afte
 
 ## Rules
 
-- Write one file per catalog entry with findings: `agentic-product-review/recommendations/<capability-slug>.md` (e.g. `agent-chat.md`)
+- Write one file per catalog entry with findings: `agentic-product-review/recommendations/<capability-slug>.md`
 - Overwrite the file when re-running for that capability
 - Capability IDs: short human-readable slugs in kebab-case (e.g. `agent-chat`)
-- Finding refs use the finding slug from the review (e.g. `no-first-run-guidance`)
-- Title is the capability name; intro sentence carries capability slug and review ref
+- **Finding ref** points to the review finding slug — do not copy **What we observed**, **Impact**, or other review text
+- Title is the capability name; intro sentence carries capability slug and review file path
 - Headings are labels only — IDs live in **Finding ref** and file names, not in titles
-- **Experience** and **Surface** come from the catalog — not the review
-- **Finding ref** must point to a confirmed finding: `<review-file>` → `<finding-slug>` (e.g. `reviews/agent-chat.md` → `coarse-multi-tool-progress`)
-- **Problem** and **Impact** come from that review finding
+- **Product** contains **Recommendation** only — forward-looking, no problem restatement
+- Do not repeat **Experience**, **Surface**, **Capability**, or catalog copy — reader has `agentic-capabilities.md`
+- **Tech** contains **Implementation** and codebase pointers — no duplicate of product recommendation prose
 - Do not recommend for **Open questions** — use `manage-agentic-product-review-memory` when the user answers
-- Per recommendation: **Product** then **Tech**, then **Notes** last
-- **Notes** is shared per recommendation — not duplicated under Product or Tech
-- Product section must stand alone — no jargon, no file paths
-- Tech section stays focused. Do not dump stack traces, schemas, or implementation plans unrelated to the finding
-- Prefer the smallest change that fixes the finding
+- Per recommendation: **Product**, then **Tech**, then **Notes** last (only when needed)
+- Prefer the smallest change that addresses the finding
 - Reuse existing UI components, error handling, loading states, and approval patterns when they exist
-- Do not invent architecture the repo does not use
-- End every file with **Next step**, horizontal rule, and footer:
-
-  ```md
-  ## Next step
-
-  Pick a recommendation to implement, or re-run `review-agentic-capabilities` after changes.
-
-  ---
-
-  *Something unclear or broken? Reach out at founders@correl8.ai*
-  ```
+- For **human handoff** and **feedback to the team** on chat capabilities: recommend **agent tools** that send email or post on the user’s behalf from the conversation — not mailto links, footer buttons, or separate forms as the primary path
+- End every file with **Next step**, horizontal rule, and footer
 
 ## Grounding Checklist
 
@@ -107,20 +88,21 @@ Before writing tech sections, verify:
 
 ## Good vs Bad Recommendations
 
-Bad:
+Bad (repeats the review):
 
-> Add better onboarding.
+> **Problem**: Users see a blank empty state. **Direction**: Add better onboarding.
 
-Good:
+Good (forward-looking):
 
-> Add an `AgentIntro` step before `AgentTaskForm` on `app/routes/agent/new.tsx`, matching the empty-state pattern used in `app/components/DashboardEmptyState.tsx`.
+> **Recommendation**: Replace the empty state with a short capability blurb and three tappable example prompts scoped to the current page.
 
 ## What This Format Covers
 
-- **Catalog ref**, **Review ref**, and per-finding product + tech recommendations
-- Experience and surface from the catalog; problem from the review
+- Per-finding **Recommendation** (product) and **Implementation** (tech)
+- **Finding ref** as a pointer back to the review
 
 ## What This Format Does Not Cover
 
+- Restating findings, catalog entries, or review impact
 - Discovering capabilities or writing UX findings
 - Re-cataloging or re-reviewing
