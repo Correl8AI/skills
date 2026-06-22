@@ -1,99 +1,55 @@
-# Agentic Skills
+# Agentic Product Review Skills
 
-Open agent skills for product and technical teams discovering, reviewing, and improving agentic capabilities in a codebase.
+Open skills for finding, reviewing, and improving AI agent capabilities in a codebase.
 
-Outputs are written for **product and tech** readers in `agentic-product-review/`:
+These skills are meant for product and technical teams. They produce plain-language docs that explain what a product's agents can do, where the experience is strong or weak, and what to improve next.
 
-| File | Skill |
-| ---- | ----- |
-| `agentic-capabilities.md` | `discover-agentic-capabilities` |
-| `reviews/agent-chat.md`, `reviews/background-agent-tasks.md`, … | `review-agentic-capabilities` |
-| `recommendations/agent-chat.md`, `recommendations/background-agent-tasks.md`, … | `recommend-agentic-product-improvements` |
-| `memory/project-context.md` | `manage-agentic-product-review-memory` |
+## What's Included
 
-Load `memory/project-context.md` before discovery, review, or recommendations when it exists.
+| Skill | Purpose |
+| --- | --- |
+| `agentic-product-review` | Run the main discovery and review workflow. |
+| `discover-agentic-capabilities` | Find agentic capabilities in a codebase. |
+| `review-agentic-capabilities` | Review capabilities from a product and UX perspective. |
+| `recommend-agentic-product-improvements` | Recommend codebase-grounded product improvements. |
+| `manage-agentic-product-review-memory` | Track project context and open questions. |
 
-Discovery and review focus on product and user experience in plain language. `recommend-agentic-product-improvements` adds codebase-grounded implementation detail.
+## Usage
 
-Use **capability** as the stable inventory unit. Each capability can also describe the user **experience** and the product or system **surface** where it appears. General assistants and copilots may be open-ended and may support multiple jobs.
-
-## Skills
-
-
-| Skill                           | What it does                                                                                                                  |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `discover-agentic-capabilities` | Scan the repo → `agentic-product-review/agentic-capabilities.md` |
-| `review-agentic-capabilities`   | Review each catalog entry → `agentic-product-review/reviews/agent-chat.md` |
-| `recommend-agentic-product-improvements` | Codebase-grounded improvements → `agentic-product-review/recommendations/agent-chat.md` |
-| `manage-agentic-product-review-memory`    | Answer open questions → `memory/project-context.md` |
-| `agentic-product-review`        | Discover + review external capabilities → `agentic-capabilities.md` + `reviews/agent-chat.md` |
-
-
-Typical workflow:
+Run the full workflow:
 
 ```text
 /agentic-product-review
 ```
 
-Or step by step:
+Or run individual skills as needed:
 
 ```text
 /discover-agentic-capabilities
 /review-agentic-capabilities
 /recommend-agentic-product-improvements
-/manage-agentic-product-review-memory background-agent-tasks/no-direct-task-creation-ui
 ```
 
-## Install
+Outputs are written to `agentic-product-review/`, including:
 
-Claude Code first:
+| Output | Description |
+| --- | --- |
+| `agentic-capabilities.md` | Inventory of discovered capabilities. |
+| `reviews/` | Product and UX reviews for each capability. |
+| `recommendations/` | Suggested improvements with implementation context. |
+| `memory/project-context.md` | Reusable project context and answered questions. |
 
-```bash
-npx skills add your-org/agentic-product-review -g -a claude-code -y
-```
-
-Project install:
-
-```bash
-npx skills add your-org/agentic-product-review -a claude-code
-```
-
-Try without installing:
-
-```bash
-npx skills use your-org/agentic-product-review --agent claude-code
-```
-
-Future targets:
-
-```bash
-npx skills add your-org/agentic-product-review -a codex
-npx skills add your-org/agentic-product-review -a cursor
-```
+If `memory/project-context.md` exists, load it before running discovery, review, or recommendation skills.
 
 ## Structure
 
 ```text
 skills/
-  discover-agentic-capabilities/
-    SKILL.md
-    references/
-      output-format.md
-  review-agentic-capabilities/
-    SKILL.md
-    references/
-      output-format.md
-      review-rubric.md
-  recommend-agentic-product-improvements/
-    SKILL.md
-    references/
-      output-format.md
-  manage-agentic-product-review-memory/
-    SKILL.md
-    references/
-      output-format.md
   agentic-product-review/
-    SKILL.md
+  discover-agentic-capabilities/
+  manage-agentic-product-review-memory/
+  recommend-agentic-product-improvements/
+  review-agentic-capabilities/
 README.md
 LICENSE
 skills.sh.json
