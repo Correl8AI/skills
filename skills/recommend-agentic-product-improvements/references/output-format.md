@@ -4,7 +4,7 @@ Write one recommendation file per capability under `agentic-product-review/recom
 
 Create `agentic-product-review/recommendations/` if it does not exist.
 
-Load `agentic-product-review/memory/project-context.md` first when it exists.
+Load `agentic-product-review/memory/project-context.md` first when it exists (format: `review-agentic-capabilities/references/project-context-format.md`).
 
 File naming: `<capability-slug>.md` (e.g. `agent-chat.md`) — match the catalog capability ID.
 
@@ -64,7 +64,7 @@ Pick a recommendation to implement, or re-run `review-agentic-capabilities` afte
 - **Product** contains **Recommendation** only — forward-looking, no problem restatement
 - Do not repeat **Experience**, **Surface**, **Capability**, or catalog copy — reader has `agentic-capabilities.md`
 - **Tech** contains **Implementation** and codebase pointers — no duplicate of product recommendation prose
-- Do not recommend for **Open questions** — use `manage-agentic-product-review-memory` when the user answers
+- Do not recommend for **Open questions** — when the user answers one, follow **Recording open question answers** in `review-agentic-capabilities/SKILL.md` first
 - Per recommendation: **Product**, then **Tech**, then **Notes** last (only when needed)
 - Prefer the smallest change that addresses the finding
 - Reuse existing UI components, error handling, loading states, and approval patterns when they exist

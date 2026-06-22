@@ -12,7 +12,6 @@ These skills are meant for product and technical teams. They produce plain-langu
 | `discover-agentic-capabilities` | Find agentic capabilities in a codebase. |
 | `review-agentic-capabilities` | Review capabilities from a product and UX perspective. |
 | `recommend-agentic-product-improvements` | Recommend codebase-grounded product improvements. |
-| `manage-agentic-product-review-memory` | Track project context and open questions. |
 
 ## Usage
 
@@ -37,9 +36,7 @@ Outputs are written to `agentic-product-review/`, including:
 | `agentic-capabilities.md` | Inventory of discovered capabilities. |
 | `reviews/` | Product and UX reviews for each capability. |
 | `recommendations/` | Suggested improvements with implementation context. |
-| `memory/project-context.md` | Reusable project context and answered questions. |
-
-If `memory/project-context.md` exists, load it before running discovery, review, or recommendation skills.
+| `memory/project-context.md` | Reusable project context (updated when you answer open questions from reviews). |
 
 ## Structure
 
@@ -47,7 +44,6 @@ If `memory/project-context.md` exists, load it before running discovery, review,
 skills/
   agentic-product-review/
   discover-agentic-capabilities/
-  manage-agentic-product-review-memory/
   recommend-agentic-product-improvements/
   review-agentic-capabilities/
 README.md

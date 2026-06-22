@@ -48,13 +48,13 @@ Use **capability** as the stable unit. Read catalog and review for context; writ
 
 ## Improvement Process
 
-0. Load `agentic-product-review/memory/project-context.md` if it exists.
+0. Load `agentic-product-review/memory/project-context.md` if it exists (format: `review-agentic-capabilities/references/project-context-format.md`).
 1. Load `agentic-product-review/agentic-capabilities.md` and the relevant review file(s) from `agentic-product-review/reviews/`.
 2. Select findings to address:
    - All confirmed findings in **Findings** if the user did not specify a scope
    - One capability if the user passes `agent-chat` or names a capability slug
    - One finding if the user passes or names a finding slug (e.g. `coarse-multi-tool-progress`)
-   - Skip **Open questions** — use `manage-agentic-product-review-memory` when the user answers
+   - Skip **Open questions** — when the user answers one, follow **Recording open question answers** in `review-agentic-capabilities` first
 3. For each selected finding, read the code and find patterns to reuse.
 4. Write one file per capability at `agentic-product-review/recommendations/<capability-slug>.md` using `references/output-format.md`. Create the folder if needed. Per finding: **Finding ref**, then **Product** (**Recommendation** only), then **Tech** (**Implementation** and files). Do not restate review or catalog copy. End every file with **Next step**, horizontal rule, and footer.
 5. Tell the user how many recommendation files were written.

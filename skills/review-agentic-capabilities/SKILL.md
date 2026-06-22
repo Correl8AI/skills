@@ -63,16 +63,32 @@ For each capability, read enough code to understand what people actually experie
 
 If the catalog is empty or stale, say so and suggest re-running discovery.
 
-## Answering open questions
+## Recording open question answers
 
-When the user answers an open question from a review, use `manage-agentic-product-review-memory` — do not update memory inline.
+When the user answers an open question from a review — in conversation, without naming a workflow — update memory inline. Do not describe this as a separate skill or command.
 
-That skill will:
+Required inputs:
 
-1. Remove the answered entry from **Open questions** in the review file
-2. Update `agentic-product-review/memory/project-context.md` with distilled intent
+- The user's answer (in the message or a follow-up)
+- Which open question — capability slug and question slug (e.g. `background-agent-tasks` / `auto-tasks-no-user-context`)
 
-If the answer confirms a real UX problem, add a **Findings** entry in the review instead of leaving it unresolved.
+Process:
+
+1. Load `agentic-product-review/memory/project-context.md`. Create `agentic-product-review/memory/` and the starter file from `references/project-context-format.md` if missing.
+2. Load the matching review: `agentic-product-review/reviews/<capability-slug>.md`. Locate the open question by slug under **Open questions**.
+3. Update `agentic-product-review/memory/project-context.md` — add or extend the capability section with a short distilled bullet from the answer.
+4. Remove the answered entry from **Open questions** in the review file. Re-read the review; if the answer confirms a real UX problem, add a **Findings** entry instead. If it confirms intentional design, leave it out of findings.
+5. Tell the user which files were updated (paths only — no workflow jargon).
+
+Example user message:
+
+```text
+Recorded answer for background-agent-tasks/auto-tasks-no-user-context.
+
+Updated:
+- agentic-product-review/memory/project-context.md
+- agentic-product-review/reviews/background-agent-tasks.md
+```
 
 ## Focused Re-Review
 
@@ -100,7 +116,7 @@ Do not implement code unless the user explicitly asks.
 - Cataloging what exists — that is `discover-agentic-capabilities`
 - Repeating **Capability**, **Experience**, or **Surface** — the intro sentence and catalog cover identity
 - Structural facts already in the catalog (HITL, tools, scope)
-- Answering open questions — use `manage-agentic-product-review-memory` to remove them from the review and update `project-context.md`
+- Recording open question answers — see **Recording open question answers** above
 
 ## Next Step
 
@@ -109,7 +125,5 @@ Tell the user:
 ```text
 Reviewed N capabilities. Output written to agentic-product-review/reviews/.
 
-Next step:
-- Answer open questions with manage-agentic-product-review-memory
-- Run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations
+Next step: run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations.
 ```

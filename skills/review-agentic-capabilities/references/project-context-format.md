@@ -1,4 +1,4 @@
-# Agentic Product Review Memory Format
+# Project Context Memory Format
 
 Maintain memory in `agentic-product-review/memory/project-context.md` only.
 
@@ -23,7 +23,7 @@ Condensed product intent from answered open questions. Load this before discover
 
 ---
 
-*Updated when open questions are answered via manage-agentic-product-review-memory.*
+*Updated when open questions are answered.*
 ```
 
 ## Rules
@@ -46,5 +46,5 @@ _No answered open questions yet._
 
 ---
 
-*Updated when open questions are answered via manage-agentic-product-review-memory.*
+*Updated when open questions are answered.*
 ```

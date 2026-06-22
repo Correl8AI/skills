@@ -55,6 +55,10 @@ Review every external capability one by one. Do not skip entries unless the user
 
 Do not implement code unless the user explicitly asks.
 
+## Open question answers
+
+When the user answers an open question from a review, follow **Recording open question answers** in `review-agentic-capabilities`.
+
 ## Re-Review
 
 Pass a capability ID as a positional arg to re-review one capability:
@@ -88,5 +92,5 @@ Outputs:
 - agentic-product-review/agentic-capabilities.md
 - agentic-product-review/reviews/agent-chat.md (one per reviewed capability)
 
-Next step: run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations. Answer open questions with manage-agentic-product-review-memory.
+Next step: run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations.
 ```

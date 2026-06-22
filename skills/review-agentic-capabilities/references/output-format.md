@@ -6,7 +6,7 @@ Create `agentic-product-review/reviews/` if it does not exist.
 
 File naming: `<capability-slug>.md` (e.g. `agent-chat.md`) — match the catalog capability ID.
 
-Before writing, load `agentic-product-review/memory/project-context.md` if it exists. Use answered intent to avoid re-raising resolved questions and to inform findings.
+Before writing, load `agentic-product-review/memory/project-context.md` if it exists (format: `references/project-context-format.md`). Use answered intent to avoid re-raising resolved questions and to inform findings.
 
 Outputs are read by **product and tech** people. Some readers have a light technical background — write product fields in plain language. Keep this document product-focused; codebase-grounded improvement guidance belongs in `recommend-agentic-product-improvements`.
 
@@ -33,7 +33,7 @@ Confirmed UX problems grounded in what the product does today.
 
 ## Open questions
 
-Behaviors that may be intentional. Do not list these under **Findings**. Use `manage-agentic-product-review-memory` when the user answers.
+Behaviors that may be intentional. Do not list these under **Findings**.
 
 ### <short label>
 
@@ -47,8 +47,7 @@ Review-specific caveats only — e.g. could not verify a flow, catalog entry was
 
 ## Next step
 
-- Answer open questions with `manage-agentic-product-review-memory`
-- Run `recommend-agentic-product-improvements` to turn findings into codebase-grounded recommendations
+Run `recommend-agentic-product-improvements` to turn findings into codebase-grounded recommendations.
 
 ---
 
@@ -76,7 +75,8 @@ Review-specific caveats only — e.g. could not verify a flow, catalog entry was
 - **Notes** is a top-level `##` section
 - Write in plain language — a product reader should not need any tech detail
 - Do not recommend fixes — that belongs in `recommend-agentic-product-improvements`
-- End every file with **Next step** (answer open questions first, then recommendations), horizontal rule, and footer
+- End every file with **Next step**, horizontal rule, and footer — do not mention memory workflow in output
+- When the user answers an open question in conversation, follow **Recording open question answers** in `review-agentic-capabilities/SKILL.md` (update `project-context.md` and the review file; never describe this as a separate command in chat or written outputs)
 
 ## Depth
 
@@ -111,6 +111,6 @@ Good (open question):
 
 ## What This Format Does Not Cover
 
-- Answering open questions — use `manage-agentic-product-review-memory`
+- Recording open question answers — see `review-agentic-capabilities/SKILL.md`; not user-facing workflow copy
 - Capability, experience, or surface — reference the discovery catalog
 - Recommendations — use `recommend-agentic-product-improvements`

@@ -60,7 +60,7 @@ Use **capability** as the stable unit.
 
 ## Discovery Process
 
-0. Load `agentic-product-review/memory/project-context.md` if it exists. Use answered intent when cataloging scope and notes.
+0. Load `agentic-product-review/memory/project-context.md` if it exists (format: `review-agentic-capabilities/references/project-context-format.md`). Use answered intent when cataloging scope and notes. Do not write memory here — recording answers is in `review-agentic-capabilities`.
 1. Scan the repo for agentic signals (grep, file tree, config, dependencies).
 2. Group related code into distinct capabilities.
 3. Drop loops that never reach a user or user-visible artifact.

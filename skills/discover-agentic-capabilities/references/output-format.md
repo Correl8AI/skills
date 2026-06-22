@@ -4,7 +4,7 @@ Write discovery output as `agentic-product-review/agentic-capabilities.md` using
 
 Create `agentic-product-review/` if it does not exist.
 
-Load `agentic-product-review/memory/project-context.md` first when it exists.
+Load `agentic-product-review/memory/project-context.md` first when it exists (format: `review-agentic-capabilities/references/project-context-format.md`).
 
 Outputs are read by **product and tech** people. Some readers have a light technical background — write product fields in plain language. Keep technical detail brief here; deep implementation guidance belongs in `recommend-agentic-product-improvements`.
 
