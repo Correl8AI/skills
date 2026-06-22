@@ -48,7 +48,7 @@ If no capabilities qualify, say what was checked and stop.
 For every catalog entry with audience `external` or `mixed`, follow `review-agentic-capabilities`:
 
 1. Read implementation pointers from the catalog.
-2. Apply `review-agentic-capabilities/references/review-rubric.md` (external sections).
+2. Pick the rubric from **Experience** / **Surface**: `review-rubric-conversational.md` (chat/copilot) or `review-rubric-headless.md` (queue/jobs). Read **Audience** from the catalog and apply matching sections.
 3. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` using `review-agentic-capabilities/references/output-format.md`.
 
 Review every external capability one by one. Do not skip entries unless the user passes a capability slug as a positional arg (e.g. `/agentic-product-review background-agent-tasks`).

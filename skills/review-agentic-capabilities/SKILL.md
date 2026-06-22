@@ -1,8 +1,7 @@
 ---
-
-## name: review-agentic-capabilities
-
+name: review-agentic-capabilities
 description: Review each agentic capability from a discovery catalog and write per-capability findings in Markdown.
+---
 
 # Review Agentic Capabilities
 
@@ -18,7 +17,7 @@ Use this skill when the user asks to:
 
 - Review discovered agentic capabilities
 - Audit each agent flow in the repo
-- Evaluate internal and external agents after a discovery pass
+- Evaluate agents after a discovery pass
 - Produce per-capability findings from the capabilities catalog
 
 If no catalog exists, ask the user to run `discover-agentic-capabilities` first or provide a catalog path.
@@ -29,25 +28,36 @@ Default input: `agentic-product-review/agentic-capabilities.md`
 
 Read each catalog entry by capability slug (e.g. `agent-chat`) and the implementation pointers listed for it.
 
+## Rubric
+
+Pick **one** rubric from **Experience** and **Surface**:
+
+| Interaction | Rubric file |
+|---|---|
+| User talks to the agent (chat, copilot, assistant UI) | `references/review-rubric-conversational.md` |
+| User only sees queue, status, results, errors | `references/review-rubric-headless.md` |
+
+**Headless test:** No chat thread → headless rubric.
+
+Read **Audience** from the catalog; use the audience guidance at the top of the chosen rubric to decide which sections apply.
+
 ## What To Review
 
-For each capability, read enough code to understand what users and operators actually experience:
+For each capability, read enough code to understand what people actually experience:
 
 - Routes, handlers, jobs, and UI that expose the capability
-- Onboarding, empty states, and first-run flows
+- Onboarding, empty states, and first-run flows (conversational)
 - Progress, loading, and status visibility
 - Error handling and recovery paths
 - Approval gates, permissions, and human-in-the-loop steps
 - Output review, editing, and confirmation flows
-
-Apply `references/review-rubric.md` based on each capability's audience. Use **capability** as the stable unit.
 
 ## Review Process
 
 1. Load `agentic-product-review/memory/project-context.md` if it exists.
 2. Load the capabilities catalog.
 3. Review each capability one by one — do not skip entries unless the user passes a capability ID.
-4. Apply the rubric for that capability's audience.
+4. Choose `review-rubric-conversational.md` or `review-rubric-headless.md`; read **Audience** from the catalog and apply matching sections.
 5. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` (e.g. `agent-chat.md`) using `references/output-format.md`. Create the folder if needed. Per file: capability name as title, intro sentence, then **What works**, **Findings**, **Open questions**, **Notes** — each a top-level `##` section. End every file with **Next step**, horizontal rule, and footer.
 6. Tell the user how many review files were written.
 
@@ -78,8 +88,8 @@ Do not implement code unless the user explicitly asks.
 
 ## What This Skill Covers
 
-- Whether each capability works well for users and operators
-- **What works** — what users can rely on today
+- Whether each capability works well for its users
+- **What works** — what people can rely on today
 - **Findings** — confirmed UX problems with stable slugs (e.g. `no-first-run-guidance`), what was observed, and impact (no recommendations)
 - **Open questions** — behaviors that may be intentional, each with a slug ID, **What we observed**, and **Question**
 - **Assessment** — strong, acceptable, weak, or incomplete (on the intro line)
@@ -103,4 +113,3 @@ Next step:
 - Answer open questions with manage-agentic-product-review-memory
 - Run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations
 ```
-
