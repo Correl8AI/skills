@@ -18,7 +18,7 @@ Condensed product intent from answered open questions. Load this before discover
 
 ## <Capability name>
 
-- **ID**: `background-agent-tasks`
+- **ID**: `agent-chat`
 - …
 
 ---

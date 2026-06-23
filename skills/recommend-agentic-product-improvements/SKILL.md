@@ -32,7 +32,7 @@ Review:
 
 Optional scope — pass a capability slug as a positional arg:
 
-- `background-agent-tasks` — one capability only
+- `agent-chat` — one capability only
 - A specific finding slug the user names (e.g. `coarse-multi-tool-progress`) or passes with the capability
 
 ## What To Ground
@@ -66,7 +66,7 @@ Do not write code unless the user explicitly asks to implement.
 Pass a capability slug as a positional arg:
 
 ```text
-/recommend-agentic-product-improvements background-agent-tasks
+/recommend-agentic-product-improvements agent-chat
 ```
 
 Re-read the code, update only `agentic-product-review/recommendations/<capability-slug>.md`, and note which findings are addressed and what remains.

@@ -8,6 +8,8 @@ File naming: `<capability-slug>.md` (e.g. `agent-chat.md`) — match the catalog
 
 Before writing, load `agentic-product-review/memory/project-context.md` if it exists (format: `references/project-context-format.md`). Use answered intent to avoid re-raising resolved questions and to inform findings.
 
+Set **Assessment** using `assessment-criteria.md` (`strong` | `acceptable` | `weak` | `incomplete`).
+
 Outputs are read by **product and tech** people. Some readers have a light technical background — write product fields in plain language. Keep this document product-focused; codebase-grounded improvement guidance belongs in `recommend-agentic-product-improvements`.
 
 This is the **judgment** step. Reference the discovery catalog — do not re-catalog.
@@ -37,7 +39,7 @@ Behaviors that may be intentional. Do not list these under **Findings**.
 
 ### <short label>
 
-- **ID**: `failed-tasks-hidden-non-staff`
+- **ID**: `empty-state-no-examples`
 - **What we observed**: What the product does today — behavior users see, not file paths
 - **Question**: What needs human judgment to decide if this is a problem
 
@@ -64,26 +66,38 @@ Run `recommend-agentic-product-improvements` to turn findings into codebase-grou
 - Do not repeat **ID** or **Catalog ref** as separate bullets — the intro sentence covers both
 - **What works** — top-level `##` section after the intro; plain prose, no bullet label
 - Capability IDs: short human-readable slugs in kebab-case, matching the catalog (e.g. `agent-chat`)
-- Finding and open-question IDs: short human-readable slugs in kebab-case, derived from the entry label (e.g. `no-first-run-guidance`, `failed-tasks-hidden-non-staff`)
+- Finding and open-question IDs: short human-readable slugs in kebab-case, derived from the entry label (e.g. `no-first-run-guidance`, `empty-state-no-examples`)
 - Slugs must be unique within each review file
 - Headings are labels only — put IDs in the **ID** field, never in titles or `###` headings
 - **Findings** — only confirmed problems. Each entry has **What we observed** and **Impact**
 - **Open questions** — may-be-intentional behaviors. Each entry has **What we observed** and **Question** — not **Impact**
 - Do not duplicate an open question under **Findings**
 - Skip open questions already answered in `project-context.md`
-- Do not repeat **Experience** or **Surface** — readers get those from the catalog
+- Do not repeat **Experience**, **Surface**, or **User persona** — readers get those from the catalog
 - **Notes** is a top-level `##` section
 - Write in plain language — a product reader should not need any tech detail
 - Do not recommend fixes — that belongs in `recommend-agentic-product-improvements`
 - End every file with **Next step**, horizontal rule, and footer — do not mention memory workflow in output
 - When the user answers an open question in conversation, follow **Recording open question answers** in `review-agentic-capabilities/SKILL.md` (update `project-context.md` and the review file; never describe this as a separate command in chat or written outputs)
 
+## Assessment
+
+See `assessment-criteria.md` for when to use each level:
+
+| Level | Typical signal |
+|---|---|
+| **strong** | Core jobs work; no meaningful blockers |
+| **acceptable** | Works with gaps; 1–2 findings, none blocking |
+| **weak** | Trust, recovery, or visibility problems; 2–5 findings |
+| **incomplete** | Stub, unreachable, or missing critical surfaces |
+
+Assessment is a summary judgment — not finding count alone.
+
 ## Depth
 
-- 2–5 confirmed findings for weak capabilities
-- 0–2 confirmed findings for strong capabilities with a short **What works**
-- Add **Open questions** when intent is unclear and not already in project context
-- Open-ended assistants may support multiple jobs — do not invent a single user flow
+- Match finding count to assessment (see `assessment-criteria.md`)
+- Add **Open questions** when intent is unclear; skip if already in project context
+- Apply **Persona fit** from catalog **User persona** — flag when system prompt or replies use the wrong tone, detail, or technicality for that user; weight heavily when **Jobs** include complex technical work
 
 ## Good vs Bad
 
@@ -95,14 +109,21 @@ Good (confirmed):
 
 > ### No progress during long runs
 > - **ID**: `no-progress-during-long-runs`
-> - **What we observed**: Operators only see a static “running” badge with no step detail.
+> - **What we observed**: Users only see a generic “Thinking…” line with no tool-step detail during multi-minute chat turns.
 
 Good (open question):
 
-> ### Failed tab hidden from members
-> - **ID**: `failed-tab-hidden-from-members`
-> - **What we observed**: Non-staff users cannot open the failed queue.
-> - **Question:** Is staff-only visibility intentional for dogfooding?
+> ### Generic empty state on all pages
+> - **ID**: `empty-state-no-examples`
+> - **What we observed**: Every page shows the same “No messages yet.” with no context-specific starter prompts.
+> - **Question:** Is a single generic empty state intentional to keep the panel simple?
+
+Good (persona fit):
+
+> ### Agent replies too technical for user
+> - **ID**: `agent-communication-mismatch`
+> - **What we observed**: Catalog user persona is non-technical PMs; system prompt only says “Markdown, concise” with no plain-language guidance; replies expose tool names and query-shaped reasoning.
+> - **Impact**: Users cannot act on complex analysis the agent performs on their behalf.
 
 ## What This Format Covers
 

@@ -69,6 +69,7 @@ Pick a recommendation to implement, or re-run `review-agentic-capabilities` afte
 - Prefer the smallest change that addresses the finding
 - Reuse existing UI components, error handling, loading states, and approval patterns when they exist
 - For **human handoff** and **feedback to the team** on chat capabilities: recommend **agent tools** that send email or post on the user’s behalf from the conversation — not mailto links, footer buttons, or separate forms as the primary path
+- For **persona fit** findings: recommend **system prompt** changes so agent tone, detail, and technicality match catalog **User persona** (**Expertise**, **Jobs**); especially how to explain complex tool work to that user
 - End every file with **Next step**, horizontal rule, and footer
 
 ## Grounding Checklist

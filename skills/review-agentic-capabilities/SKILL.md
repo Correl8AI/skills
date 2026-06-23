@@ -1,11 +1,13 @@
 ---
 name: review-agentic-capabilities
-description: Review each agentic capability from a discovery catalog and write per-capability findings in Markdown.
+description: Review each conversational agentic capability from a discovery catalog and write per-capability findings in Markdown.
 ---
 
 # Review Agentic Capabilities
 
-Review every capability in the discovery catalog from a **product and user-experience** perspective.
+Review every **conversational** capability in the discovery catalog from a **product and user-experience** perspective.
+
+Conversational means the user talks to the agent directly — chat panel, copilot, or assistant UI. Skip background/headless capabilities (queue, status, results only).
 
 Read the code to understand behavior, but write findings in plain language — no file paths or implementation detail in the output.
 
@@ -30,16 +32,11 @@ Read each catalog entry by capability slug (e.g. `agent-chat`) and the implement
 
 ## Rubric
 
-Pick **one** rubric from **Experience** and **Surface**:
+Use `references/review-rubric-conversational.md` for every capability in scope.
 
-| Interaction | Rubric file |
-|---|---|
-| User talks to the agent (chat, copilot, assistant UI) | `references/review-rubric-conversational.md` |
-| User only sees queue, status, results, errors | `references/review-rubric-headless.md` |
+Read **Audience** and **User persona** from the catalog; use the audience guidance at the top of the rubric. Apply **Persona fit** — check whether the system prompt configures agent communication (tone, detail, technicality) for that **human user**.
 
-**Headless test:** No chat thread → headless rubric.
-
-Read **Audience** from the catalog; use the audience guidance at the top of the chosen rubric to decide which sections apply.
+Also read `references/assessment-criteria.md` before setting **Assessment**.
 
 ## What To Review
 
@@ -51,15 +48,18 @@ For each capability, read enough code to understand what people actually experie
 - Error handling and recovery paths
 - Approval gates, permissions, and human-in-the-loop steps
 - Output review, editing, and confirmation flows
+- Memory (user, session, project) — whether each level would help for **Jobs** / **Experience**, and what is implemented
+- System prompt communication style vs catalog **User persona** (tone, detail, technicality for that user)
 
 ## Review Process
 
 1. Load `agentic-product-review/memory/project-context.md` if it exists.
 2. Load the capabilities catalog.
-3. Review each capability one by one — do not skip entries unless the user passes a capability ID.
-4. Choose `review-rubric-conversational.md` or `review-rubric-headless.md`; read **Audience** from the catalog and apply matching sections.
-5. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` (e.g. `agent-chat.md`) using `references/output-format.md`. Create the folder if needed. Per file: capability name as title, intro sentence, then **What works**, **Findings**, **Open questions**, **Notes** — each a top-level `##` section. End every file with **Next step**, horizontal rule, and footer.
-6. Tell the user how many review files were written.
+3. Review each conversational capability one by one — skip headless/background entries; do not skip in-scope entries unless the user passes a capability ID.
+4. Apply `review-rubric-conversational.md`; read **Audience** and **User persona** from the catalog; apply matching sections including **Persona fit**.
+5. Set **Assessment** using `references/assessment-criteria.md`.
+6. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` (e.g. `agent-chat.md`) using `references/output-format.md`. Create the folder if needed. Per file: capability name as title, intro sentence, then **What works**, **Findings**, **Open questions**, **Notes** — each a top-level `##` section. End every file with **Next step**, horizontal rule, and footer.
+7. Tell the user how many review files were written.
 
 If the catalog is empty or stale, say so and suggest re-running discovery.
 
@@ -70,7 +70,7 @@ When the user answers an open question from a review — in conversation, withou
 Required inputs:
 
 - The user's answer (in the message or a follow-up)
-- Which open question — capability slug and question slug (e.g. `background-agent-tasks` / `auto-tasks-no-user-context`)
+- Which open question — capability slug and question slug (e.g. `agent-chat` / `empty-state-intentional`)
 
 Process:
 
@@ -83,11 +83,11 @@ Process:
 Example user message:
 
 ```text
-Recorded answer for background-agent-tasks/auto-tasks-no-user-context.
+Recorded answer for agent-chat/empty-state-intentional.
 
 Updated:
 - agentic-product-review/memory/project-context.md
-- agentic-product-review/reviews/background-agent-tasks.md
+- agentic-product-review/reviews/agent-chat.md
 ```
 
 ## Focused Re-Review
@@ -95,7 +95,7 @@ Updated:
 Pass a capability ID as a positional arg:
 
 ```text
-/review-agentic-capabilities background-agent-tasks
+/review-agentic-capabilities agent-chat
 ```
 
 Update only `agentic-product-review/reviews/<capability-slug>.md`. Note what improved, what remains, and any new risks.
@@ -114,7 +114,7 @@ Do not implement code unless the user explicitly asks.
 ## What This Skill Does Not Cover
 
 - Cataloging what exists — that is `discover-agentic-capabilities`
-- Repeating **Capability**, **Experience**, or **Surface** — the intro sentence and catalog cover identity
+- Repeating **Capability**, **Experience**, **Surface**, or **User persona** — the intro sentence and catalog cover identity
 - Structural facts already in the catalog (HITL, tools, scope)
 - Recording open question answers — see **Recording open question answers** above
 

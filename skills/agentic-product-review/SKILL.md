@@ -1,11 +1,11 @@
 ---
 name: agentic-product-review
-description: Discover agentic capabilities, review each external one, and write per-capability review files in Markdown.
+description: Discover conversational agentic capabilities, review each external one, and write per-capability review files in Markdown.
 ---
 
 # Agentic Product Review
 
-Run discovery and review of external user-facing agentic experiences in the repository.
+Run discovery and review of external user-facing **conversational** agent experiences in the repository (chat, copilot, assistant UIs).
 
 This skill always runs two phases:
 
@@ -25,9 +25,9 @@ Use this skill when the user asks to:
 
 ## Scope
 
-**Discovery** catalogs all user-facing agent loops — external, internal, or mixed.
+**Discovery** catalogs conversational user-facing agent loops only — external, internal, or mixed. Skip background/headless agents (queue and results without a chat thread).
 
-**Review** covers only capabilities marked `external` or `mixed`. Skip pure `internal` capabilities unless the user asks to include them.
+**Review** covers only conversational capabilities marked `external` or `mixed`. Skip pure `internal` capabilities unless the user asks to include them.
 
 Do not review general code quality, architecture, security, or non-agentic UI unless it directly affects an external user agent interaction.
 
@@ -48,10 +48,10 @@ If no capabilities qualify, say what was checked and stop.
 For every catalog entry with audience `external` or `mixed`, follow `review-agentic-capabilities`:
 
 1. Read implementation pointers from the catalog.
-2. Pick the rubric from **Experience** / **Surface**: `review-rubric-conversational.md` (chat/copilot) or `review-rubric-headless.md` (queue/jobs). Read **Audience** from the catalog and apply matching sections.
+2. Apply `review-agentic-capabilities/references/review-rubric-conversational.md`. Read **Audience** from the catalog and apply matching sections.
 3. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` using `review-agentic-capabilities/references/output-format.md`.
 
-Review every external capability one by one. Do not skip entries unless the user passes a capability slug as a positional arg (e.g. `/agentic-product-review background-agent-tasks`).
+Review every external conversational capability one by one. Do not skip entries unless the user passes a capability slug as a positional arg (e.g. `/agentic-product-review agent-chat`).
 
 Do not implement code unless the user explicitly asks.
 
@@ -64,20 +64,21 @@ When the user answers an open question from a review, follow **Recording open qu
 Pass a capability ID as a positional arg to re-review one capability:
 
 ```text
-/agentic-product-review background-agent-tasks
+/agentic-product-review agent-chat
 ```
 
 Re-run discovery only if the catalog may be stale. Update only `agentic-product-review/reviews/<capability-slug>.md`.
 
 ## What This Skill Covers
 
-- Full discovery catalog of user-facing agent loops
+- Full discovery catalog of conversational user-facing agent loops
 - Per-capability UX review for external and mixed audiences
-- Confirmed findings (e.g. `no-first-run-guidance`), open questions (e.g. `failed-tasks-hidden-non-staff`), and assessments (no recommendations)
+- Confirmed findings (e.g. `no-first-run-guidance`), open questions, and assessments (no recommendations)
 
 ## What This Skill Does Not Cover
 
 - Reviewing pure internal capabilities (unless asked)
+- Background or headless agent loops — out of scope for these skills
 - Recommendations or codebase-grounded implementation plans — use `recommend-agentic-product-improvements`
 - Implementing code unless the user explicitly asks
 

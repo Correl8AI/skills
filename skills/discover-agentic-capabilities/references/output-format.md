@@ -33,6 +33,16 @@ This is the **inventory** step. Describe what exists — do not score quality, f
 - **Experience**: How users or operators encounter it — mechanism and flow, not quality judgment (note when open-ended)
 - **Surface**: Where in the product this appears — screen, panel, widget, report, notification, etc.
 
+#### User persona
+
+The **human using** this capability — not the agent’s voice or tone. Always infer from system prompt, product copy, and what the product is and does; never leave blank or “Unknown”. Discovery records who the product is for; review checks whether agent communication fits them.
+
+- **Who**: Role and context (e.g. ecommerce shopper, support agent, PM reviewing analytics, staff engineer)
+- **Expertise**: User’s technical/domain level (e.g. non-technical, business user, domain expert, engineer)
+- **Jobs**: What they hire this agent for — list multiple when open-ended; do not invent a fixed step-by-step flow
+
+Do **not** put agent tone, reply detail, or communication style here — those belong in review **Persona fit**, judged against this user persona.
+
 #### Tech
 
 - **Implementation pointers**: Key files only — enough to locate the capability in code, not a full architecture walkthrough
@@ -55,17 +65,19 @@ Run `review-agentic-capabilities` to review each capability.
 
 ## Rules
 
-- Use stable capability IDs: short human-readable slugs in kebab-case (e.g. `agent-chat`, `background-agent-tasks`), derived from the capability name
+- Use stable capability IDs: short human-readable slugs in kebab-case (e.g. `agent-chat`), derived from the capability name
 - Capability headings are names only — put IDs in the **ID** field, not in `###` headings
 - Only catalog agent loops that reach a user directly or through a user-visible artifact.
-- General fields (`ID`, `Audience`) come first, then **Product**, then **Tech**, then **Notes** last.
-- **Notes** is shared — not duplicated under Product or Tech.
+- General fields (`ID`, `Audience`) come first, then **Product**, **User persona**, **Tech**, then **Notes** last.
+- **User persona** sits between **Product** and **Tech** — describes the human user only; do not score agent communication fit here.
+- **Notes** is shared — not duplicated under Product, User persona, or Tech.
 - **Capability** and **experience** are the core product fields — keep them distinct and specific.
 - **Surface** describes the product location, not file paths or routes.
 - Product section must stand alone — a product reader should not need the tech section.
 - Tech section stays brief. Do not dump stack traces, schemas, or implementation plans.
 - If audience is hard to classify, pick the closest match and explain in **Notes**.
-- Open-ended assistants and copilots may support multiple jobs — do not invent a step-by-step flow or a single user job.
+- Open-ended assistants and copilots may support multiple jobs — list them under **User persona** → **Jobs**; do not invent a step-by-step flow.
+- **User persona** is required for every capability. Synthesize from system prompt, product copy, and product codebase. If evidence is thin, still infer from what the product is and does; note low confidence in **Notes**, not “Unknown”.
 - Keep entries factual. Do not score quality, flag UX problems, or recommend fixes.
 - **Notes** is for structural facts only — not UX gaps (those belong in review **Findings**).
 - Default output path: `agentic-product-review/agentic-capabilities.md`
@@ -97,7 +109,7 @@ Merge when:
 
 ## What This Format Covers
 
-- Capability, experience, and surface per agent loop
+- Capability, experience, surface, and user persona per agent loop
 - Audience and implementation pointers
 - Structural facts in **Notes**
 

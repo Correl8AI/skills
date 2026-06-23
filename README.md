@@ -1,6 +1,6 @@
 # Agentic Product Review Skills
 
-Open skills for finding, reviewing, and improving AI agent capabilities in a codebase.
+Open skills for finding, reviewing, and improving **conversational** AI agent capabilities in a codebase (chat, copilot, assistant UIs).
 
 These skills are meant for product and technical teams. They produce plain-language docs that explain what a product's agents can do, where the experience is strong or weak, and what to improve next.
 
