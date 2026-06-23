@@ -4,7 +4,7 @@
   "groupings": [
     {
       "title": "Agentic Product Review",
-      "description": "Skills for product and technical teams discovering, reviewing, and improving AI agent capabilities in a codebase.",
+      "description": "Skills for product and technical teams discovering, reviewing, and improving AI agent capabilities in a codebase. Run agentic-product-review for the full workflow.",
       "skills": [
         "discover-agentic-capabilities",
         "review-agentic-capabilities",

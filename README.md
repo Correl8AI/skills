@@ -9,7 +9,7 @@ These skills are meant for product and technical teams. They produce plain-langu
 
 | Skill                                    | Purpose                                                |
 | ---------------------------------------- | ------------------------------------------------------ |
-| `agentic-product-review`                 | Run the main discovery and review workflow.            |
+| `agentic-product-review`                 | Run the full discovery, review, and recommendations workflow. |
 | `discover-agentic-capabilities`          | Find agentic capabilities in a codebase.               |
 | `review-agentic-capabilities`            | Review capabilities from a product and UX perspective. |
 | `recommend-agentic-product-improvements` | Recommend codebase-grounded product improvements.      |
@@ -23,13 +23,13 @@ npx skills add Correl8AI/skills
 
 ## Usage
 
-Run the full workflow:
+Run the full workflow (discovery, review, and recommendations):
 
 ```text
 /agentic-product-review
 ```
 
-Or run individual skills as needed:
+Or run individual skills as needed (e.g. to re-run one phase):
 
 ```text
 /discover-agentic-capabilities

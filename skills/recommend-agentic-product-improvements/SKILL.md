@@ -18,6 +18,8 @@ Use this skill when the user asks to:
 - Turn `agentic-product-review/reviews/agent-chat.md` into actionable engineering guidance
 - Propose improvements for one capability or finding
 
+This skill is Phase 3 of `agentic-product-review`. It can also be run standalone after review.
+
 If no review exists, ask the user to run `review-agentic-capabilities` first or provide review files.
 
 ## Inputs

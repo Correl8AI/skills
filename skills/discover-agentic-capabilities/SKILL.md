@@ -100,6 +100,6 @@ Tell the user:
 ```text
 Found N user-facing agentic capabilities. Output written to agentic-product-review/agentic-capabilities.md.
 
-Next step: run review-agentic-capabilities to review each capability.
+Next step: run `agentic-product-review` for the full workflow, or `review-agentic-capabilities` to review each capability.
 ```
 

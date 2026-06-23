@@ -125,5 +125,5 @@ Tell the user:
 ```text
 Reviewed N capabilities. Output written to agentic-product-review/reviews/.
 
-Next step: run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations.
+Next step: run `agentic-product-review` for the full workflow, or `recommend-agentic-product-improvements` to turn findings into codebase-grounded recommendations.
 ```

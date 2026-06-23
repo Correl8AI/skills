@@ -1,16 +1,17 @@
 ---
 name: agentic-product-review
-description: Discover conversational agentic capabilities, review each external one, and write per-capability review files in Markdown.
+description: Discover conversational agentic capabilities, review each external one, and write per-capability reviews and codebase-grounded recommendations in Markdown.
 ---
 
 # Agentic Product Review
 
-Run discovery and review of external user-facing **conversational** agent experiences in the repository (chat, copilot, assistant UIs).
+Run discovery, review, and recommendations for external user-facing **conversational** agent experiences in the repository (chat, copilot, assistant UIs).
 
-This skill always runs two phases:
+This skill always runs three phases:
 
 1. **Discover** — write `agentic-product-review/agentic-capabilities.md`
 2. **Review** — write `agentic-product-review/reviews/<capability-slug>.md` for each external or mixed capability
+3. **Recommend** — write `agentic-product-review/recommendations/<capability-slug>.md` for each reviewed capability with confirmed findings
 
 Do not skip discovery. Do not write a separate combined review document. Do not perform a broad product review outside agentic user experiences.
 
@@ -22,12 +23,15 @@ Use this skill when the user asks to:
 - Review an AI agent experience from an external user's perspective
 - Find gaps in external user agentic flows
 - Evaluate onboarding, trust, permissions, handoff, or failure states for external user agents
+- Turn review findings into codebase-grounded improvement recommendations
 
 ## Scope
 
 **Discovery** catalogs conversational user-facing agent loops only — external, internal, or mixed. Skip background/headless agents (queue and results without a chat thread).
 
 **Review** covers only conversational capabilities marked `external` or `mixed`. Skip pure `internal` capabilities unless the user asks to include them.
+
+**Recommend** covers confirmed findings from the review phase for capabilities in scope.
 
 Do not review general code quality, architecture, security, or non-agentic UI unless it directly affects an external user agent interaction.
 
@@ -55,32 +59,46 @@ Review every external conversational capability one by one. Do not skip entries 
 
 Do not implement code unless the user explicitly asks.
 
+### Phase 3 — Recommend
+
+For every reviewed capability with confirmed findings in **Findings**, follow `recommend-agentic-product-improvements`:
+
+1. Load `agentic-product-review/agentic-capabilities.md` and the matching review file(s).
+2. Select confirmed findings from **Findings** — skip **Open questions** unless the user has already answered them.
+3. For each finding, read enough code to propose a realistic improvement.
+4. Write one file per capability at `agentic-product-review/recommendations/<capability-slug>.md` using `recommend-agentic-product-improvements/references/output-format.md`. Create the folder if needed.
+
+If a capability has no confirmed findings, skip its recommendation file.
+
+Do not implement code unless the user explicitly asks.
+
 ## Open question answers
 
 When the user answers an open question from a review, follow **Recording open question answers** in `review-agentic-capabilities`.
 
-## Re-Review
+## Re-Run
 
-Pass a capability ID as a positional arg to re-review one capability:
+Pass a capability ID as a positional arg to re-run one capability:
 
 ```text
 /agentic-product-review agent-chat
 ```
 
-Re-run discovery only if the catalog may be stale. Update only `agentic-product-review/reviews/<capability-slug>.md`.
+Re-run discovery only if the catalog may be stale. Update `agentic-product-review/reviews/<capability-slug>.md` and `agentic-product-review/recommendations/<capability-slug>.md`.
 
 ## What This Skill Covers
 
 - Full discovery catalog of conversational user-facing agent loops
 - Per-capability UX review for external and mixed audiences
-- Confirmed findings (e.g. `no-first-run-guidance`), open questions, and assessments (no recommendations)
+- Confirmed findings (e.g. `no-first-run-guidance`), open questions, and assessments
+- Codebase-grounded recommendations per confirmed finding
+- Implementing code only when the user explicitly asks
 
 ## What This Skill Does Not Cover
 
 - Reviewing pure internal capabilities (unless asked)
 - Background or headless agent loops — out of scope for these skills
-- Recommendations or codebase-grounded implementation plans — use `recommend-agentic-product-improvements`
-- Implementing code unless the user explicitly asks
+- Recommendations for open questions that have not been answered
 
 ## Next Step
 
@@ -92,6 +110,7 @@ Agentic product review complete.
 Outputs:
 - agentic-product-review/agentic-capabilities.md
 - agentic-product-review/reviews/agent-chat.md (one per reviewed capability)
+- agentic-product-review/recommendations/agent-chat.md (one per capability with findings)
 
-Next step: run recommend-agentic-product-improvements to turn findings into codebase-grounded recommendations.
+Next step: pick a recommendation to implement, or re-run on a capability after changes.
 ```
