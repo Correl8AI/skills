@@ -6,12 +6,20 @@ These skills are meant for product and technical teams. They produce plain-langu
 
 ## What's Included
 
-| Skill | Purpose |
-| --- | --- |
-| `agentic-product-review` | Run the main discovery and review workflow. |
-| `discover-agentic-capabilities` | Find agentic capabilities in a codebase. |
-| `review-agentic-capabilities` | Review capabilities from a product and UX perspective. |
-| `recommend-agentic-product-improvements` | Recommend codebase-grounded product improvements. |
+
+| Skill                                    | Purpose                                                |
+| ---------------------------------------- | ------------------------------------------------------ |
+| `agentic-product-review`                 | Run the main discovery and review workflow.            |
+| `discover-agentic-capabilities`          | Find agentic capabilities in a codebase.               |
+| `review-agentic-capabilities`            | Review capabilities from a product and UX perspective. |
+| `recommend-agentic-product-improvements` | Recommend codebase-grounded product improvements.      |
+
+
+## Install
+
+```bash
+npx skills add Correl8AI/skills
+```
 
 ## Usage
 
@@ -31,12 +39,14 @@ Or run individual skills as needed:
 
 Outputs are written to `agentic-product-review/`, including:
 
-| Output | Description |
-| --- | --- |
-| `agentic-capabilities.md` | Inventory of discovered capabilities. |
-| `reviews/` | Product and UX reviews for each capability. |
-| `recommendations/` | Suggested improvements with implementation context. |
+
+| Output                      | Description                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| `agentic-capabilities.md`   | Inventory of discovered capabilities.                                           |
+| `reviews/`                  | Product and UX reviews for each capability.                                     |
+| `recommendations/`          | Suggested improvements with implementation context.                             |
 | `memory/project-context.md` | Reusable project context (updated when you answer open questions from reviews). |
+
 
 ## Structure
 
