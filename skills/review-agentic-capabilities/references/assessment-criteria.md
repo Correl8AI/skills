@@ -14,7 +14,7 @@ Pick one level per capability after applying the rubric. Use confirmed findings 
 
 ## acceptable
 
-- Core flows work but one or two meaningful gaps remain (e.g. weak empty state, coarse progress, agent communication mismatch for catalog user persona)
+- Core flows work but one or two meaningful gaps remain (e.g. weak empty state, coarse progress, undefined agent identity, missing user or channel context, agent communication mismatch for catalog user persona)
 - Users can still get value with workarounds or patience
 - Typically 1–2 confirmed findings; none are blockers for the primary job
 - Open questions may exist but do not dominate the picture

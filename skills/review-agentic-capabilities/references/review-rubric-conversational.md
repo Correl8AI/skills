@@ -24,9 +24,52 @@ Onboarding matters less than purpose, observability, permission boundaries, and 
 
 Default scope: customer-facing unless the user asks to include operator-only capabilities.
 
+## Agent identity and behavior
+
+Review whether the system prompt and configuration give the agent enough context about **who it is** and **how it should behave** — distinct from **Purpose and boundaries** (what it can do) and **Persona fit** (how it talks to a specific human user).
+
+Read the system prompt from implementation pointers. Look for:
+
+- **Identity**: role in the product, name or persona if any, relationship to the user (advisor, operator copilot, support agent, …)
+- **Behavior**: when to ask vs infer, proactive vs reactive, how to handle ambiguity, honesty about limits, when to escalate or defer
+- **Constraints**: what it must not do or say, tone boundaries beyond generic “be helpful”
+- **Consistency**: enough definition for repeatable behavior — not only model defaults or a one-line “you are an assistant”
+
+Typical findings:
+
+- Generic assistant with no product-specific identity or behavioral rules
+- Missing guidance on escalation, approvals, or admitting uncertainty — behavior varies turn to turn
+- Identity or behavior in the prompt conflicts with catalog **Capability** or **Experience**
+
+Load `project-context.md` for overrides.
+
+---
+
+## User and channel context
+
+Review what the agent **actually receives or can load at runtime** about the human and their situation — from the implementation only. Do **not** use catalog **User persona** here; that field describes who discovery thinks uses the capability and belongs in **Persona fit**.
+
+Read implementation pointers: what is injected per turn, available via tools, or derivable from session state.
+
+Look for:
+
+- **Who the user is**: role, account type, permissions, expertise signals passed to the agent — not only free-text the user types in the thread
+- **Where they are coming from**: entry point, prior screen or workflow step, deep link, handoff from another capability, failure or success state that triggered the conversation
+- **Communication medium**: whether runtime context reflects how users reach the agent — synchronous chat panel, embedded copilot, async thread, notification reply, operator console — and whether prompt and UI match that mode
+
+Typical findings:
+
+- Product has distinct roles or permission levels but the agent receives no user identity beyond the thread
+- User opens the agent from a specific workflow moment but nothing about origin or intent is passed on first turn
+- Prompt or UX assume live back-and-forth chat but the surface is async or one-shot; or copilot beside the UI but no page or session context (see also **GUI context**)
+
+Load `project-context.md` for overrides.
+
+---
+
 ## Persona fit
 
-Read catalog **User persona** — **Who**, **Expertise**, and **Jobs**. Review whether the **agent’s communication** (system prompt + observed behavior) fits that **human user** — not whether discovery was wrong about who they are.
+Uses catalog **User persona** only — **Who**, **Expertise**, and **Jobs**. Review whether the **agent’s communication** (system prompt + observed behavior) fits that documented user. This is separate from **User and channel context**, which checks runtime facts the agent can see, not the catalog persona record.
 
 Read the system prompt from implementation pointers. Check agent **tone**, **detail level**, and **technicality** of replies against the user’s **Expertise** and **Jobs**:
 
@@ -292,9 +335,9 @@ Look for:
 
 ## Findings priority
 
-**Customer-facing:** persona fit → trust and control (incl. permission visibility) → discoverability → first run → async progress → failure and recovery → cross-capability handoff → human handoff → product feedback → purpose and boundaries → GUI context → memory (user, session, project) → GUI action parity → context management → output review → polish
+**Customer-facing:** agent identity and behavior → user and channel context → persona fit → trust and control (incl. permission visibility) → discoverability → first run → async progress → failure and recovery → cross-capability handoff → human handoff → product feedback → purpose and boundaries → GUI context → memory (user, session, project) → GUI action parity → context management → output review → polish
 
-**Operator-facing:** persona fit → trust and control → progress and state (incl. async) → failure and recovery → purpose and boundaries → memory (user, session, project) → data handling → context management → completeness → polish
+**Operator-facing:** agent identity and behavior → user and channel context → persona fit → trust and control → progress and state (incl. async) → failure and recovery → purpose and boundaries → memory (user, session, project) → data handling → context management → completeness → polish
 
 ---
 

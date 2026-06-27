@@ -32,34 +32,16 @@ Read each catalog entry by capability slug (e.g. `agent-chat`) and the implement
 
 ## Rubric
 
-Use `references/review-rubric-conversational.md` for every capability in scope.
-
-Read **Audience** and **User persona** from the catalog; use the audience guidance at the top of the rubric. Apply **Persona fit** — check whether the system prompt configures agent communication (tone, detail, technicality) for that **human user**.
-
-Also read `references/assessment-criteria.md` before setting **Assessment**.
-
-## What To Review
-
-For each capability, read enough code to understand what people actually experience:
-
-- Routes, handlers, jobs, and UI that expose the capability
-- Onboarding, empty states, and first-run flows (conversational)
-- Progress, loading, and status visibility
-- Error handling and recovery paths
-- Approval gates, permissions, and human-in-the-loop steps
-- Output review, editing, and confirmation flows
-- Memory (user, session, project) — whether each level would help for **Jobs** / **Experience**, and what is implemented
-- System prompt communication style vs catalog **User persona** (tone, detail, technicality for that user)
+Apply `references/review-rubric-conversational.md` for every capability in scope. Set **Assessment** using `references/assessment-criteria.md`.
 
 ## Review Process
 
 1. Load `agentic-product-review/memory/project-context.md` if it exists.
 2. Load the capabilities catalog.
 3. Review each conversational capability one by one — skip headless/background entries; do not skip in-scope entries unless the user passes a capability ID.
-4. Apply `review-rubric-conversational.md`; read **Audience** and **User persona** from the catalog; apply matching sections including **Persona fit**.
-5. Set **Assessment** using `references/assessment-criteria.md`.
-6. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` (e.g. `agent-chat.md`) using `references/output-format.md`. Create the folder if needed. Per file: capability name as title, intro sentence, then **What works**, **Findings**, **Open questions**, **Notes** — each a top-level `##` section. End every file with **Next step**, horizontal rule, and footer.
-7. Tell the user how many review files were written.
+4. Read enough code to understand what people actually experience; apply the rubric.
+5. Write one file per capability at `agentic-product-review/reviews/<capability-slug>.md` (e.g. `agent-chat.md`) using `references/output-format.md`. Create the folder if needed. Per file: capability name as title, intro sentence, then **What works**, **Findings**, **Open questions**, **Notes** — each a top-level `##` section. End every file with **Next step**, horizontal rule, and footer.
+6. Tell the user how many review files were written.
 
 If the catalog is empty or stale, say so and suggest re-running discovery.
 

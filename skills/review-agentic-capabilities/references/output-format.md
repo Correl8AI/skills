@@ -97,7 +97,9 @@ Assessment is a summary judgment — not finding count alone.
 
 - Match finding count to assessment (see `assessment-criteria.md`)
 - Add **Open questions** when intent is unclear; skip if already in project context
-- Apply **Persona fit** from catalog **User persona** — flag when system prompt or replies use the wrong tone, detail, or technicality for that user; weight heavily when **Jobs** include complex technical work
+- Apply **Agent identity and behavior** — flag when the system prompt lacks a clear agent role, behavioral rules, or constraints beyond generic assistant defaults
+- Apply **User and channel context** — flag when the implementation passes no user identity, entry origin, or medium context the agent could use at runtime
+- Apply **Persona fit** — flag when system prompt or replies use the wrong tone, detail, or technicality vs catalog **User persona**; weight heavily when **Jobs** include complex technical work
 
 ## Good vs Bad
 
@@ -124,6 +126,20 @@ Good (persona fit):
 > - **ID**: `agent-communication-mismatch`
 > - **What we observed**: Catalog user persona is non-technical PMs; system prompt only says “Markdown, concise” with no plain-language guidance; replies expose tool names and query-shaped reasoning.
 > - **Impact**: Users cannot act on complex analysis the agent performs on their behalf.
+
+Good (agent identity):
+
+> ### No defined agent role or behavior
+> - **ID**: `generic-agent-identity`
+> - **What we observed**: System prompt is a single line (“helpful assistant”); no product role, escalation rules, or guidance on when to ask vs infer.
+> - **Impact**: Replies feel interchangeable with any chatbot; users cannot tell what this agent is for in the product.
+
+Good (user and channel context):
+
+> ### Agent unaware of user entry point
+> - **ID**: `no-entry-context`
+> - **What we observed**: Users open chat from a failed export screen; nothing about the failure or current page is passed to the agent on first turn.
+> - **Impact**: Users must re-explain what they were doing before the agent can help.
 
 ## What This Format Covers
 
